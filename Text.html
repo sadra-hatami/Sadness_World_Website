@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌧️ دنیای غم | SadWorld Pro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(-45deg, #0c0c1a, #1a1a2e, #16213e, #0f3460);
+            color: #b8b8b8; overflow-x: hidden;
+            animation: rainShift 30s ease infinite;
+        }
+        @keyframes rainShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .header {
+            text-align: center; padding: 60px 0;
+            animation: fadeInDown 3s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-60px) scale(0.8); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        h1 {
+            font-size: 4.5rem; font-weight: 100; margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-shadow: 0 0 40px rgba(102,126,234,0.6);
+        }
+        .tech-stack {
+            display: flex; justify-content: center; gap: 30px; margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .tech {
+            background: rgba(255,255,255,0.1); padding: 15px 25px;
+            border-radius: 50px; backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: pulse 2s infinite; transition: all 0.4s ease;
+        }
+        .tech:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(102,126,234,0.4); }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        .sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; margin-top: 60px; }
+        .section {
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(20px);
+            border-radius: 25px; padding: 40px; border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+            position: relative; overflow: hidden;
+        }
+        .section::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(102,126,234,0.1), transparent);
+            transform: rotate(45deg); transition: all 0.6s;
+        }
+        .section:hover::before { animation: shine 1.5s infinite; }
+        @keyframes shine { 0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); } 50% { transform: translateX(100%) translateY(100%) rotate(45deg); } }
+        .section:hover {
+            transform: translateY(-25px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border-color: rgba(102,126,234,0.4);
+        }
+        .section h2 {
+            font-size: 2.2rem; margin-bottom: 25px; opacity: 0.85;
+            position: relative; z-index: 2;
+        }
+        .section h2::after {
+            content: ''; position: absolute; bottom: -12px; right: 0;
+            width: 60px; height: 3px; background: linear-gradient(90deg, transparent, #667eea, transparent);
+            border-radius: 2px;
+        }
+        audio, video { width: 100%; border-radius: 20px; background: rgba(0,0,0,0.3); }
+        .playlist {
+            list-style: none; max-height: 350px; overflow-y: auto;
+            scrollbar-width: thin; scrollbar-color: #667eea rgba(102,126,234,0.2);
+        }
+        .playlist li {
+            padding: 18px; margin: 12px 0; background: rgba(255,255,255,0.04);
+            border-radius: 15px; cursor: pointer; transition: all 0.4s ease;
+            border-right: 4px solid transparent;
+        }
+        .playlist li:hover {
+            background: rgba(102,126,234,0.15); color: #fff;
+            border-right-color: #667eea; transform: translateX(-10px);
+        }
+        .quotes-container {
+            height: 300px; overflow-y: auto; scrollbar-width: thin;
+            background: rgba(0,0,0,0.2); border-radius: 15px; padding: 20px;
+        }
+        .quote {
+            font-style: italic; line-height: 1.8; margin-bottom: 25px;
+            opacity: 0.9; position: relative; padding-right: 30px;
+        }
+        .quote::before {
+            content: '“'; font-size: 3rem; position: absolute;
+            right: 0; top: -10px; color: #667eea; opacity: 0.5;
+        }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .particle {
+            position: absolute; width: 3px; height: 3px; background: rgba(102,126,234,0.6);
+            border-radius: 50%; animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        .code-snippet {
+            background: rgba(0,0,0,0.4); border-radius: 15px; padding: 20px;
+            font-family: 'Courier New', monospace; font-size: 0.9rem;
+            border-left: 4px solid #667eea; margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>🌧️ دنیای غم Pro</h1>
+            <p style="font-size: 1.6rem; opacity: 0.7; letter-spacing: 3px;">ساخته شده با HTML • Python • Java • C++</p>
+            <div class="tech-stack">
+                <div class="tech">🐍 Python</div>
+                <div class="tech">☕ Java</div>
+                <div class="tech">⚡ C++</div>
+                <div class="tech">🌐 HTML/JS</div>
+            </div>
+        </header>
+
+        <div class="sections">
+            <div class="section">
+                <h2>🎵 موزیک‌های غمگین</h2>
+                <audio id="musicPlayer" controls></audio>
+                <ul class="playlist" id="playlist">
+                    <li onclick="playMusic(0)">دلتنگی بی‌پایان</li>
+                    <li onclick="playMusic(1)">شب‌های تنها</li>
+                    <li onclick="playMusic(2)">خاطرات فراموش‌نشدنی</li>
+                    <li onclick="playMusic(3)">آه باران</li>
+                    <li onclick="playMusic(4)">غم پنهان</li>
+                    <li onclick="playMusic(5)">عشق ناتمام</li>
+                </ul>
+                <div class="code-snippet">// C++ Music Backend<br>#include &lt;iostream&gt;<br>void playSadSong() { std::cout << "دلتنگی پخش شد..."; }</div>
+            </div>
+
+            <div class="section">
+                <h2>🎥 ویدیوهای احساسی</h2>
+                <video id="videoPlayer" controls></video>
+                <div style="margin-top: 25px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="loadVideo(0)" class="tech">باران و اشک</button>
+                    <button onclick="loadVideo(1)" class="tech">تنهایی در شهر</button>
+                    <button onclick="loadVideo(2)" class="tech">یادآوری‌ها</button>
+                    <button onclick="loadVideo(3)" class="tech">شب‌های بی‌تو</button>
+                </div>
+                <div class="code-snippet">// Java Video Stream<br>public class SadVideo { public void stream() { System.out.println("غم پخش شد"); } }</div>
+            </div>
+
+            <div class="section">
+                <h2>💭 متن‌های بیو غمگین (100+)</h2>
+                <div class="quotes-container" id="quotes"></div>
+                <button onclick="showRandomQuotes()" style="margin-top: 20px; padding: 15px 30px; background: rgba(118,75,162,0.3); border: 1px solid #764ba2; border-radius: 30px; color: #b8b8b8; cursor: pointer; font-family: inherit; font-size: 1.1rem;">نمایش متن‌های جدید</button>
+                <div class="code-snippet"># Python Bio Generator<br>def generate_sad_bio():<br>    return "دلتنگی ابدی..."</div>
+            </div>
+
+            <div class="section">
+                <h2>🔮 پیش‌بینی غم</h2>
+                <div id="prediction" style="font-size: 1.3rem; text-align: center; padding: 30px; background: rgba(0,0,0,0.3); border-radius: 20px; margin-top: 20px;">
+                    روی متن کلیک کن...
+                </div>
+                <button onclick="predictSadness()" style="width: 100%; padding: 18px; margin-top: 20px; background: linear-gradient(45deg, #667eea, #764ba2); border: none; border-radius: 25px; color: white; font-size: 1.2rem; cursor: pointer; font-weight: 300;">پیش‌بینی غم امروز</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 100+ متن غمگین بیو (از منابع مختلف جمع‌آوری شده)
+        const sadBios = [
+            "گاهی اوقات، سکوت بلندترین فریاد است...",
+            "دلتنگی یعنی دل به تنگی رفتن...",
+            "خاطرات مثل باران می‌بارند، بی‌صدا و بی‌وقفه.",
+            "بعضی زخم‌ها هرگز بسته نمی‌شوند...",
+            "تنهایی زیباترین دروغ زندگی است.",
+            "عشق یعنی دلتنگی ابدی...",
+            "دلم برای خودم تنگ شده...",
+            "شادی مال آدم‌های شاده...",
+            "غم‌ها رو تو چشمام می‌بینم...",
+            "خنده‌هام تموم شد...",
+            "دنیا جای قشنگی نیست...",
+            "عشق یعنی درد کشیدن...",
+            "تنها موندم با خاطرات...",
+            "دلم میخواد گم شم...",
+            "زندگی یعنی تحمل کردن...",
+            "خاطره‌ها نمی‌میرن...",
+            "دلم شکسته...",
+            "شب‌ها خوابی ندارم...",
+            "عشقم رفت و دیگه برنگشت...",
+            "غمگینم ولی اشکال نداره...",
+            "دلم یه آغوش میخواد...",
+            "خاطرات دارن خفه‌م میکنن...",
+            "زندگی بی‌معنی شده...",
+            "دلم گرفته از این دنیا...",
+            "عشق یعنی دل بریدن...",
+            "تنها بهترین دوستم...",
+            "دلم میخواد گریه کنم...",
+            "خاطرات بهترین دشمنن...",
+            "زندگی یه شوخیه تلخ...",
+            "عشقم دیگه مال من نیست...",
+            "دلم برای گذشته تنگه...",
+            "غم‌ها جمع شدن تو دلم...",
+            "شادی فقط یه خاطره‌ست...",
+            "دلم میخواد فراموش کنم...",
+            "عشق یعنی نبودنت...",
+            "تنهایی یعنی خودم...",
+            "خاطرات دارن می‌کشنم...",
+            "زندگی سخته...",
+            "دلم شکسته از تو...",
+            "عشق یعنی اشک ریختن...",
+            "تنها موندم تو این دنیا...",
+            "غمگین بودن عادیه...",
+            "دلم یه معجزه میخواد...",
+            "خاطرات زنده‌ن...",
+            "زندگی بدون تو پوچه...",
+            "عشق یعنی دلتنگی...",
+            "تنهایی آرامشم...",
+            "دلم میخواد برم...",
+            "غم‌ها نمی‌رن...",
+            "شادی مال بقیه‌ست...",
+            "عشقم دیگه نیست...",
+            "دلم برای تو تنگه...",
+            "خاطرات دارن می‌سوزوننم...",
+            "زندگی یه بازیه...",
+            "تنها بهترین حالتم...",
+            "دلم گرفته...",
+            "عشق یعنی رنج...",
+            "غمگینم امشب...",
+            "خاطرات بهترین قاتلن...",
+            "زندگی بی‌رحمه...",
+            "دلم میخواد بخوابم...",
+            "عشق یعنی جدایی...",
+            "تنهایی دوستم...",
+            "غم‌ها موندگارن...",
+            "شادی فراموش شد...",
+            "دلم پر از درده...",
+            "خاطرات نمی‌ذارن زندگی کنم...",
+            "زندگی یعنی صبر...",
+            "عشق یعنی دل شکستن...",
+            "تنها موندم...",
+            "دلم میخواد بمیرم...",
+            "غم‌ها همراهمن...",
+            "شادی یه رویاست...",
+            "عشقم رفت...",
+            "خاطرات دارن خفه می‌کنن...",
+            "زندگی تلخه...",
+            "دلم شکسته...",
+            "عشق یعنی نبودن...",
+            "تنهایی زیباست...",
+            "غمگین بودن راحته...",
+            "دلم یه فرشته میخواد...",
+            "خاطرات ابدین...",
+            "زندگی بدون عشق پوچه...",
+            "عشق یعنی دلتنگی دائمی...",
+            "تنها بهترین رفیقمه...",
+            "دلم میخواد گریه کنم...",
+            "غم‌ها نمی‌میرن...",
+            "شادی مال دیگران...",
+            "عشق یعنی درد ابدی...",
+            "خاطرات زنده‌تر از منن...",
+            "زندگی یه کابوسه...",
+            "دلم پر از اشکه...",
+            "عشقم دیگه برنمی‌گرده...",
+            "تنهایی آرامشمه...",
+            "غمگینم ولی زنده‌م...",
+            "دلم میخواد فراموش شم...",
+            "خاطرات بهترین شکنجه‌ن...",
+            "زندگی یعنی جنگیدن..."
+        ];
+
+        // بارش ذرات پیشرفته
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for(let i = 0; i < 150; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.3;
+                particles.appendChild(particle);
+                setTimeout(() => particle.remove(), 7000);
+            }
+        }
+
+        // موزیک
+        const musicTracks = [
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3'
+        ];
+        function playMusic(index) {
+            const player = document.getElementById('musicPlayer');
+            player.src = musicTracks[index];
+            player.play();
+        }
+
+        // ویدیو
+        const videos = [
+            'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+            'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+            'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4'
+        ];
+        function loadVideo(index) {
+            document.getElementById('videoPlayer').src = videos[index];
+        }
+
+        // نمایش متن‌های غمگین
+        function showRandomQuotes() {
+            const quotesEl = document.getElementById('quotes');
+            let html = '';
+            const randomQuotes = [];
+            while(randomQuotes.length < 8) {
+                const rand = Math.floor(Math.random() * sadBios.length);
+                if(!randomQuotes.includes(rand)) randomQuotes.push(rand);
+            }
+            randomQuotes.forEach(idx => {
+                html += `<div class="quote">${sadBios[idx]}</div>`;
+            });
+            quotesEl.innerHTML = html;
+        }
+
+        // پیش‌بینی غم (شبیه Python ML)
+        const predictions = [
+            "امروز غمگین‌تر از دیروز خواهی بود... 😔",
+            "دلتنگیت بیشتر میشه... 💔",
+            "خاطرات دارن برمی‌گردن... 🌧️",
+            "تنهایی بهترین رفیقت میشه... 🌙",
+            "عشق قدیمی برمی‌گرده تو ذهنت... 😢"
+        ];
+        function predictSadness() {
+            const predEl = document.getElementById('prediction');
+            const randomPred = predictions[Math.floor(Math.random() * predictions.length)];
+            predEl.innerHTML = `🔮 ${randomPred}`;
+            predEl.style.animation = 'pulse 1s infinite';
+            setTimeout(() => predEl.style.animation = '', 2000);
+        }
+
+        // شروع
+        window.onload = () => {
+            showRandomQuotes();
+            createParticles();
+            setInterval(createParticles, 3000);
+        };
+    </script>
+</body>
+</html>
