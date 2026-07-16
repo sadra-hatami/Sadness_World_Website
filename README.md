@@ -22,7 +22,7 @@ A unique web experience that brings together emotional writings, music, videos, 
 
 <br>
 
-[🌐 Live Demo]([https://sadra-hatami.github.io/Sadness_World_Website/) •
+[🌐 Live Demo](https://sadra-hatami.github.io/Sadness-World-Website/) •
 [📧 Contact](mailto:sadra.hatami.1732@gmail.com)
 
 </div>
