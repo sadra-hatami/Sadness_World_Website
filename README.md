@@ -1,6 +1,7 @@
 <div align="center">
 
-# 🌧️ Sadness World 🌧️
+# Sadness World
+# 🌧️🎵🎥💭🔮🌧️
 
 ### An Emotional Entertainment & Reflection Platform
 
